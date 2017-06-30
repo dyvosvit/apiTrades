@@ -19,7 +19,7 @@ try:
     from urllib.parse import urlencode
 except ImportError:
     # Fall back to Python 2's urllib2
-    from urllib2 import urlopen, Request
+    from urllib2 import Request, urlopen, URLError, HTTPError
     from urllib import urlencode
 
 import json
@@ -76,9 +76,11 @@ class poloniex:
             #print(req)
             try:
                 ret = urlopen(Request('https://poloniex.com/tradingApi', post_data, headers))
-            except:
-                print("Polo is lagging, we've got some error  ... continue")
-                return ''
+            except URLError as e:
+                print("Polo is lagging, we've got some error")
+                print(e.code,e.reason)
+                print("  ... continue")
+            return ''
 
             jsonRet = json.loads(ret.read())
 
