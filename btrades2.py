@@ -191,7 +191,7 @@ while (True):
     cls()
     printFancyHeader()
     balance=testapi.get_balance('BTC')['result']
-    print 'Current available BTC balance is:                {:+.14f}'.format(balance['Available'])
+    print 'Current available BTC balance is:                {:+.14f}'.format(float(balance['Available']))
     estim = calculateEstimatedBTCs(balance['Available'])
     print 'Current estimated value of portfolio in BTCs (lastprice):{:+.14f}'.format(float(estim))
     #print([i['Available'] for i in balance if i['Currency']==u'BTC'][0])
