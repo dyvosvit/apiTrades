@@ -365,7 +365,7 @@ def pollBittrexTrades():
             text_out=text_out+'of '+f(i['Quantity'],8,'')+' '+str(i['Exchange'][4:]).ljust(4)
             text_out=text_out+' at '+f(i['PricePerUnit'],9,'')+', with revenue '
             if i['OrderType'][6:] == 'BUY':
-                print(RED+text_out+f(i['Limit'],12,'-')+ENDC)
+                print(RED+text_out+f(i['Price'],12,'-')+ENDC)
             else:
                 print(GREEN+text_out+f(i['Price'],12,'+')+ENDC)
 def calculateEstimatedBTCs():
