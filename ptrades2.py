@@ -78,7 +78,7 @@ class poloniex:
                 'Sign': sign,
                 'Key': self.APIKey
             }
-            #print(req)
+            print(req)
             try:
                 ret = urlopen(Request('https://poloniex.com/tradingApi', post_data, headers))
             except URLError as e:
