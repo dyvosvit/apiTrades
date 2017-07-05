@@ -80,7 +80,7 @@ class poloniex:
                 print("Polo is lagging, we've got some error")
                 print(e.code,e.reason)
                 print("  ... continue")
-            return ''
+                return ''
 
             jsonRet = json.loads(ret.read())
 
