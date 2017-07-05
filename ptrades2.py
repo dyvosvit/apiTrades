@@ -24,7 +24,7 @@ try:
     from urllib.parse import urlencode
 except ImportError:
     # Fall back to Python 2's urllib2
-    from urllib2 import urlopen, Request
+    from urllib2 import Request, urlopen, URLError, HTTPError
     from urllib import urlencode
 
 import json
