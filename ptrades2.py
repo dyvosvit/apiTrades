@@ -83,7 +83,7 @@ class poloniex:
                 ret = urlopen(Request('https://poloniex.com/tradingApi', post_data, headers))
             except URLError as e:
                 print("Polo is lagging, we've got some error")
-                print(e.code,e.reason)
+                print(e.message,e.reason)
                 print("  ... continue")
                 return ''
 
