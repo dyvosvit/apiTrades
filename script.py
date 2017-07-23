@@ -129,11 +129,11 @@ def usage():
 print sys.argv
 if len(sys.argv) != 5:
 	usage()
-elif '.' not in sysargv[3]:
+elif '.' not in sys.argv[3]:
 	usage()
-elif '.' not in sysargv[4]:
+elif '.' not in sys.argv[4]:
 	usage()
-elif '_' not in sysargv[2]:
+elif '_' not in sys.argv[2]:
 	usage()
 type=sys.argv[1]
 currencyPair=sys.argv[2]
