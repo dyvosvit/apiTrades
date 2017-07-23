@@ -121,9 +121,9 @@ testapi = poloniex(pkey,spkey)
 def usage():
 	print "Usage: "+sys.argv[0]+" type currencyPair rate amount"
 	print '"type": "buy" or "sell"'
-	print '"currencyPair": "BTC_XVC"'
-	print '# "rate": "0.00018500"'
-	print '# "amount": "455.34206390"'
+	print '"currencyPair": "BTC_XVC" <== in this format'
+	print '# "rate": "0.00018500" <== with dot, desired exchange rate for the coin'
+	print '# "amount": "455.34206390" <== number of the coins'
 	sys.exit(0)
 	
 print sys.argv
