@@ -70,7 +70,7 @@ class poloniex:
                 'Sign': sign,
                 'Key': self.APIKey
             }
-            #print(req)
+            print(req)
             try:
                 ret = urlopen(Request('https://poloniex.com/tradingApi', post_data, headers))
             except HTTPError as e:
@@ -131,8 +131,6 @@ if len(sys.argv) != 5:
 	usage()
 elif '.' not in sys.argv[3]:
 	usage()
-elif '.' not in sys.argv[4]:
-	usage()
 elif '_' not in sys.argv[2]:
 	usage()
 type=sys.argv[1]
@@ -140,7 +138,7 @@ currencyPair=sys.argv[2]
 rate=sys.argv[3]
 amount=sys.argv[4]
 if type=='buy':
-    orders = testapi.buy(currencyPair,rate,amount)
+    orders = testapi.buy(currencyPair,'{:.8f}'.format(float(rate)),'{:.8f}'.format(float(amount)))
 else:    
-    orders = testapi.sell(currencyPair,rate,amount)
+    orders = testapi.sell(currencyPair,'{:.8f}'.format(float(rate)),'{:.8f}'.format(float(amount)))
 print orders
