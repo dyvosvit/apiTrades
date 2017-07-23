@@ -140,7 +140,7 @@ currencyPair=sys.argv[2]
 rate=sys.argv[3]
 amount=sys.argv[4]
 if type=='buy':
-    orders = testapi.buy(currencyPair,"{0:.8f}".format(rate),"{0:.8f}".format(amount))
+    orders = testapi.buy(currencyPair,rate,amount)
 else:    
-    orders = testapi.sell(currencyPair,"{0:.8f}".format(rate),"{0:.8f}".format(amount))
+    orders = testapi.sell(currencyPair,rate,amount)
 print orders
