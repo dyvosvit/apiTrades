@@ -94,6 +94,11 @@ class poloniex:
         
     def returnOrderTrades(self, orderNumber):
     	return self.api_query('returnOrderTrades',{"orderNumber":orderNumber})
+
+    def returnBalances(self):
+    	return self.api_query('returnBalances')
+    
+    
     # Places a buy order in a given market. Required POST parameters are "currencyPair", "rate", and "amount". 
     # If successful, the method will return the order number.
     # Inputs:
@@ -119,26 +124,38 @@ class poloniex:
 import sys
 testapi = poloniex(pkey,spkey)
 def usage():
-	print "Usage: "+sys.argv[0]+" type currencyPair rate amount"
+	print "Usage: "+sys.argv[0]+" currencyPair type rate amount"
+	print '"currencyPair": "BTC_XVC" <== in this format!!'
 	print '"type": "buy" or "sell"'
-	print '"currencyPair": "BTC_XVC" <== in this format'
-	print '# "rate": "0.00018500" <== with dot, desired exchange rate for the coin'
-	print '# "amount": "455.34206390" <== number of the coins'
+	print '"rate": "0.00018500" <== with dot!!, desired exchange rate for the coin'
+	print '"amount": "all" or "455.34206390" <== number of the coins'
 	sys.exit(0)
-	
+
 print sys.argv
 if len(sys.argv) != 5:
 	usage()
-elif '.' not in sys.argv[3]:
+if sys.argv[2] not in ['buy','sell']:
 	usage()
-elif '_' not in sys.argv[2]:
+type=sys.argv[2]
+if '.' not in sys.argv[3]:
 	usage()
-type=sys.argv[1]
-currencyPair=sys.argv[2]
 rate=sys.argv[3]
-amount=sys.argv[4]
+if '_' not in sys.argv[1]:
+	usage()
+currencyPair=sys.argv[1]
+mainCurrency=currencyPair.split('_')[0]
+if sys.argv[4] =='all':
+	print 'Please wait, getting balances from Poloniex ....',
+	balances = testapi.returnBalances()[mainCurrency]
+	print 'done!'
+	print('Current '+mainCurrency+' balance: '+str(balances))
+	amount=float(balances)/float(rate)	
+else:
+	amount=sys.argv[4]
+print('Amount of '+currencyPair.split('_')[1]+' to '+type+': '+'{:.8f}'.format(float(amount)))
 if type=='buy':
     orders = testapi.buy(currencyPair,'{:.8f}'.format(float(rate)),'{:.8f}'.format(float(amount)))
 else:    
     orders = testapi.sell(currencyPair,'{:.8f}'.format(float(rate)),'{:.8f}'.format(float(amount)))
-print orders
+if orders!='':
+	print('Resulting orders: '+orders)
