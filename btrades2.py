@@ -159,7 +159,7 @@ def pollBittrexTrades():
             #print(i)
             text_out=str(i['Exchange']).ljust(9)
             text_out=text_out+str(i['TimeStamp']).replace('T',' ').split('.')[0].ljust(20)+str(i['OrderType'][6:]).ljust(5)
-            text_out=text_out+'of '+f(i['Quantity'],8,'')+' '+str(i['Exchange'][4:]).ljust(4)
+            text_out=text_out+'of '+f(i['Quantity'],8,'').rjust(14)+'	'+str(i['Exchange'][4:]).ljust(5)
             text_out=text_out+' at '+f(i['PricePerUnit'],9,'')+', with revenue '
             if i['OrderType'][6:] == 'BUY':
                 print(RED+text_out+f(i['Price'],12,'-')+ENDC)
