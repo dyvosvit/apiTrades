@@ -17,7 +17,7 @@
 #'Last' or 'Bid' or 'Ask'
 
 pollingInterval = 15
-trex_dust_limit = 0.00051
+trex_dust_limit = 0.001
 key = ""
 skey= ""
 
